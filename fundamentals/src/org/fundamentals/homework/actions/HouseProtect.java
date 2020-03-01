@@ -1,8 +1,8 @@
 package org.fundamentals.homework.actions;
 
-public interface HouseProtect extends Action{
+public interface HouseProtect extends Action {
     @Override
-    default String action(){
+    default String animalAction() {
         return "protecting house";
     }
 }

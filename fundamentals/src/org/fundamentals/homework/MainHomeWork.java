@@ -4,7 +4,11 @@ import org.fundamentals.homework.animals.*;
 
 public class MainHomeWork {
     public static void main(String[] args) {
-        printLanguageDescription(getAnimalName(args[0]));
+        if (args.length == 0) {
+            System.out.println("Your not entered any animal");
+        } else {
+            printLanguageDescription(getAnimalName(args[0]));
+        }
     }
 
     private static Animal getAnimalName(String name) {

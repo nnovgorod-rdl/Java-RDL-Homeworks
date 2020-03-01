@@ -1,8 +1,8 @@
 package org.fundamentals.homework.actions;
 
-public interface SomethingMake extends Action{
+public interface SomethingMake extends Action {
     @Override
-   default String action() {
+    default String animalAction() {
         return "tigdin-tigdin";
     }
 }

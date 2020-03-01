@@ -3,11 +3,12 @@ package org.fundamentals.homework.animals;
 import org.fundamentals.homework.actions.Action;
 import org.fundamentals.homework.voices.Voice;
 
-public abstract class Animal implements Voice, Action {
-    abstract String getAnimalName();
+public interface Animal extends Voice, Action {
 
-   public String getDescription() {
-        return getAnimalName() + " says " + voice() + " and " + action();
+    String getAnimalName();
+
+    default String getDescription() {
+        return getAnimalName() + " says " + animalVoice() + " and " + animalAction();
     }
-    
+
 }
