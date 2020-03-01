@@ -65,6 +65,7 @@ public class Main {
 
     public static class Order {
 
+        public OrderStatus status;
     }
 
     protected class Processor<E> {
