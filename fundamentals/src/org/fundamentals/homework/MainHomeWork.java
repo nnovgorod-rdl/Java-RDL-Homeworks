@@ -5,7 +5,7 @@ import org.fundamentals.homework.animals.*;
 public class MainHomeWork {
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("Your not entered any animal");
+            System.out.println("You're not entered any animal");
         } else {
             printAnimalDescription(getAnimalName(args[0]));
         }
