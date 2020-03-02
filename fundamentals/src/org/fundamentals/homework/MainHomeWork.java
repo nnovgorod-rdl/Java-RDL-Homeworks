@@ -7,7 +7,7 @@ public class MainHomeWork {
         if (args.length == 0) {
             System.out.println("Your not entered any animal");
         } else {
-            printLanguageDescription(getAnimalName(args[0]));
+            printAnimalDescription(getAnimalName(args[0]));
         }
     }
 
@@ -24,7 +24,7 @@ public class MainHomeWork {
         }
     }
 
-    private static void printLanguageDescription(Animal animal) {
+    private static void printAnimalDescription(Animal animal) {
         System.out.println(animal.getDescription());
     }
 }
