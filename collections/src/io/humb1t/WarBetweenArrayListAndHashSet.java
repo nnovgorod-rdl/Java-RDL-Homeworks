@@ -55,9 +55,10 @@ PS SonarLint и IDEA немного ругае.тся, что еще можно 
 public class WarBetweenArrayListAndHashSet {
     static final ArrayList<String> arrayListOfString = new ArrayList<>();
     static final HashSet<String> hashSetOfStrings = new HashSet<>();
-    public static final String ELEMENTS_IN = " elements in ";
-    public static final String NANO_SECONDS = " nano seconds";
-    public static final String SOMETHING_WRONG = "Something wrong!!!";
+    static final String ELEMENTS_IN = " elements in ";
+    static final String NANO_SECONDS = " nano seconds";
+    static final String SOMETHING_WRONG = "Something wrong!!!";
+    public static final String SECONDS = " seconds\r\n";
 
     static ArrayList<String> stringsToFind = new ArrayList<>();
     static final HashSet<String> stringsToFindSet = new HashSet<>();
@@ -66,9 +67,12 @@ public class WarBetweenArrayListAndHashSet {
 
     static final String PART_OF_VALUE_T0_COLLECTION = "StringValue";
 
-    public static final int NUMBER_OF_ELEMENTS_TO_ADD_IN_COLLECTION = 10000000;
-    public static final int NUMBER_OF_ELEMENTS_TO_FIND = 700;
-    public static final int NUMBER_OF_ELEMENTS_TO_DELETE = 500;
+    //TODO добавтье 0, в конце каждой переменной, окончательно доделывал на ноуте, а он с
+    //TODO 10000000, 700 & 500 вываливался в: java.lang.OutOfMemoryError: Java heap space :-)
+    //TODO я смог убить JVM :-)
+    static final int NUMBER_OF_ELEMENTS_TO_ADD_IN_COLLECTION = 1000000;
+    static final int NUMBER_OF_ELEMENTS_TO_FIND = 70;
+    static final int NUMBER_OF_ELEMENTS_TO_DELETE = 50;
 
     static Random random = new Random();
 
@@ -100,18 +104,18 @@ public class WarBetweenArrayListAndHashSet {
         stringsToDelete.addAll(stringsToDeleteSet);
     }
 
-    static void deleteElements(Collection full, Collection del) {
+    static void deleteElements(Collection<String> full, Collection<String> del) {
         if (full.getClass().toString().endsWith("ArrayList")) {
-            deleteElementsInArray((ArrayList) full, (ArrayList) del);
+            deleteElementsInArray((ArrayList<String>) full, (ArrayList<String>) del);
         } else {
-            deleteElementsInSet((HashSet) full, (ArrayList) del);
+            deleteElementsInSet((HashSet<String>) full, (ArrayList<String>) del);
         }
     }
 
-    static void deleteElementsInArray(ArrayList full, ArrayList del) {
+    static void deleteElementsInArray(ArrayList<String> full, ArrayList<String> del) {
         start = getNanoTime();
-        for (Object o : del) {
-            boolean isElementDel = full.remove(o);
+        for (String s : del) {
+            boolean isElementDel = full.remove(s);
             if (!isElementDel) {
                 System.out.println(SOMETHING_WRONG);
                 return;
@@ -120,13 +124,13 @@ public class WarBetweenArrayListAndHashSet {
         finish = getNanoTime();
         long resultNanoTime = finish - start;
         System.out.println("Delete " + NUMBER_OF_ELEMENTS_TO_FIND + ELEMENTS_IN + full.getClass().toString() + " is " + resultNanoTime + NANO_SECONDS);
-        System.out.println("Or " + getSeconds(resultNanoTime) + " seconds\r\n");
+        System.out.println("Or " + getSeconds(resultNanoTime) + SECONDS);
     }
 
-    static void deleteElementsInSet(HashSet full, ArrayList del) {
+    static void deleteElementsInSet(HashSet<String> full, ArrayList<String> del) {
         start = getNanoTime();
-        for (Object o : del) {
-            boolean isElementDel = full.remove(o);
+        for (String s : del) {
+            boolean isElementDel = full.remove(s);
             if (!isElementDel) {
                 System.out.println(SOMETHING_WRONG);
                 return;
@@ -135,21 +139,21 @@ public class WarBetweenArrayListAndHashSet {
         finish = getNanoTime();
         long resultNanoTime = finish - start;
         System.out.println("Delete " + NUMBER_OF_ELEMENTS_TO_FIND + ELEMENTS_IN + full.getClass().toString() + " is " + resultNanoTime + NANO_SECONDS);
-        System.out.println("Or " + getSeconds(resultNanoTime) + " seconds\r\n");
+        System.out.println("Or " + getSeconds(resultNanoTime) + SECONDS);
     }
 
-    static void findElements(Collection full, Collection find) {
+    static void findElements(Collection<String> full, Collection<String> find) {
         if (full.getClass().toString().endsWith("ArrayList")) {
-            findElementsInArray((ArrayList) full, (ArrayList) find);
+            findElementsInArray((ArrayList<String>) full, (ArrayList<String>) find);
         } else {
-            findElementInSet((HashSet) full, (ArrayList) find);
+            findElementInSet((HashSet<String>) full, (ArrayList<String>) find);
         }
     }
 
-    static void findElementsInArray(ArrayList full, ArrayList find) {
+    static void findElementsInArray(ArrayList<String> full, ArrayList<String> find) {
         start = getNanoTime();
-        for (int i = 0; i < find.size(); i++) {
-            int isElementFind = full.indexOf(find.get(i));
+        for (String s : find) {
+            int isElementFind = full.indexOf(s);
             if (isElementFind == -1) {
                 System.out.println(SOMETHING_WRONG);
                 return;
@@ -158,13 +162,13 @@ public class WarBetweenArrayListAndHashSet {
         finish = getNanoTime();
         long resultNanoTime = finish - start;
         System.out.println("Find " + NUMBER_OF_ELEMENTS_TO_FIND + ELEMENTS_IN + full.getClass().toString() + " is " + resultNanoTime + NANO_SECONDS);
-        System.out.println("Or " + getSeconds(resultNanoTime) + " seconds\r\n");
+        System.out.println("Or " + getSeconds(resultNanoTime) + SECONDS);
     }
 
-    static void findElementInSet(HashSet full, ArrayList find) {
+    static void findElementInSet(HashSet<String> full, ArrayList<String> find) {
         start = getNanoTime();
-        for (Object o : find) {
-            boolean isElementFind = full.contains(o);
+        for (String s : find) {
+            boolean isElementFind = full.contains(s);
             if (!isElementFind) {
                 System.out.println(SOMETHING_WRONG);
                 return;
@@ -173,7 +177,7 @@ public class WarBetweenArrayListAndHashSet {
         finish = getNanoTime();
         long resultNanoTime = finish - start;
         System.out.println("Find " + NUMBER_OF_ELEMENTS_TO_FIND + ELEMENTS_IN + full.getClass().toString() + " is " + resultNanoTime + NANO_SECONDS);
-        System.out.println("Or " + getSeconds(resultNanoTime) + " seconds\r\n");
+        System.out.println("Or " + getSeconds(resultNanoTime) + SECONDS);
     }
 
     static long getNanoTime() {
@@ -192,7 +196,7 @@ public class WarBetweenArrayListAndHashSet {
         finish = getNanoTime();
         long resultNanoTime = finish - start;
         System.out.println("Add " + NUMBER_OF_ELEMENTS_TO_ADD_IN_COLLECTION + " elements to " + c.getClass().toString() + " is " + resultNanoTime + NANO_SECONDS);
-        System.out.println("Or " + getSeconds(resultNanoTime) + " seconds\r\n");
+        System.out.println("Or " + getSeconds(resultNanoTime) + SECONDS);
 
     }
 
