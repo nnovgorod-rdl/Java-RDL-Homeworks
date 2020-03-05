@@ -39,7 +39,7 @@ public class ConcurrentLinkedQueueExample {
             System.out.println("ProcessorFirst started");
             try {
                 for (int i = 1; i <= 10; i++) {
-                    String str = "StringPF" + i;
+                    String str = "StringProcessorFirst" + i;
                     queue.add(str);
                     System.out.println("ProcessorFirst added : "
                             + str);
@@ -58,7 +58,7 @@ public class ConcurrentLinkedQueueExample {
             System.out.println("ProcessorSecond started");
             try {
                 for (int i = 1; i <= 10; i++) {
-                    String str = "StringPS" + i;
+                    String str = "StringProcessorSecond" + i;
                     queue.add(str);
                     System.out.println("ProcessorSecond added : "
                             + str);
@@ -77,7 +77,7 @@ public class ConcurrentLinkedQueueExample {
             System.out.println("ProcessorThird started");
             try {
                 for (int i = 1; i <= 10; i++) {
-                    String str = "StringPT" + i;
+                    String str = "StringProcessorThird" + i;
                     queue.add(str);
                     System.out.println("ProcessorThird added : "
                             + str);
