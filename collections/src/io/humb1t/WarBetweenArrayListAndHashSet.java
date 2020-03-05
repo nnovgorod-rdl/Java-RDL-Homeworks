@@ -6,9 +6,9 @@ import java.util.HashSet;
 import java.util.Random;
 
 /*
-Мною ьыло выбрано для битвы ArrayList и HashSet
+Мною было выбрано для битвы ArrayList и HashSet
 И появился вопрос, как их сравнить?!
-Решил, что сравинивать буду
+Решил, что сравнивать буду
 
 1 - добавление элементов
 2 - поиск вхождения элемента в коллекцию, по значению элемента
@@ -17,37 +17,45 @@ ArrayList.indexOf(Object o) или HaspSet.contains(Object o)
 ArrayList.remove(Object o) или HaspSet.remove(Object o)
 Хотя удаление наверное зря, оно не сильно будет отличаться от поиска
 
-Результаты
-Add 10000000 elements to class java.util.ArrayList is 7363549200 nano seconds
-Or 7.3635492 seconds
+Результаты, окончательно доделанные на работе с учетом форматирования double, что бы ТОЧНО сравнить
+В прошлый раз не учел (ступил), что double любит выводить 0.15e-7
 
-Add 10000000 elements to class java.util.HashSet is 5219456800 nano seconds
-Or 5.2194568 seconds
+Количество элементов для добавления - 1000000.
+Количество элементов для поиска - 700;
+Количество элементов для удаления - 500;
 
+1 - добавление элементов
+Add 1000000 elements to class java.util.ArrayList is 209201800 nano seconds
+Or 0,209201800000000 seconds
 
-Find 700 elements in class java.util.ArrayList is 28155704400 nano seconds
-Or 28.1557044 seconds
+Add 1000000 elements to class java.util.HashSet is 1722269500 nano seconds
+Or 1,722269500000000 seconds
 
-Find 700 elements in class java.util.HashSet is 672800 nano seconds
-Or 6.728E-4 seconds
+ArrayList уверенно вырвался вперед, что не удивительно, т.к. ему не нужно рассчитывать Hash, каждому добавляемому
+элементу и проверять, есть ли такой элемент уже в коллекции.
+HashSet - т.к. содержит только "уникальные" элементы, тратит время на проверку уникальности и расчет Hash'а
+------
+2 - поиск вхождения элемента в коллекцию, по значению элемента
+Find 700 elements in class java.util.ArrayList is 3843853400 nano seconds
+Or 3,843853400000000 seconds
 
-Delete 700 elements in class java.util.ArrayList is 20735544900 nano seconds
-Or 20.7355449 seconds
+Find 700 elements in class java.util.HashSet is 553000 nano seconds
+Or 0,000553000000000 seconds
 
-Delete 700 elements in class java.util.HashSet is 541100 nano seconds
-Or 5.411E-4 seconds
+Безоговорочное лидерство HashSet, потратив при добавлении время на расчет Hash'а, теперь он с его помощью
+с легкостью ищет элементы, по значению
+------
+3 - удаление элементов, по значению элемента
+Delete 700 elements in class java.util.ArrayList is 2501267300 nano seconds
+Or 2,501267300000000 seconds
 
+Delete 700 elements in class java.util.HashSet is 494200 nano seconds
+Or 0,000494200000000 seconds
 
-Process finished with exit code 0
+Похожая ситуация и при удалении элемента по значению, HashSet с легкостью находит и удаляет элементы по значению,
+с легкостью опережаю ArrayList
 
-Скорость работы по добавлению элементов:
-ArrayList с незначительным отрывом проигрывает HashSet, что кстате для меня странно, нада видимо еще почитать
-Ведь в моем понимании, HashSet еще должен тратить время на расчет Hash и поиск, нет ли уже такого элемента!
-
-А вот в поиске и удалении элементов, по значению элемента ArrayList, я бы сказал, мог бы и не приходить на соревнование :-)
-HashSet с помощью своего поиска по Hash'у оказывается в 4-е раза быстрее
-
-PS SonarLint и IDEA немного ругае.тся, что еще можно немного почистить код, будем считать,
+PS SonarLint и IDEA немного ругается, что еще можно немного почистить код, будем считать,
 что это мой первый технический долг :-)
 
  */
@@ -67,12 +75,12 @@ public class WarBetweenArrayListAndHashSet {
 
     static final String PART_OF_VALUE_T0_COLLECTION = "StringValue";
 
-    //TODO добавтье 0, в конце каждой переменной, окончательно доделывал на ноуте, а он с
-    //TODO 10000000, 700 & 500 вываливался в: java.lang.OutOfMemoryError: Java heap space :-)
-    //TODO я смог убить JVM :-)
+    //TODO можно добавить 0, в конце переменной NUMBER_OF_ELEMENTS_TO_ADD_IN_COLLECTION, окончательно
+    //TODO доделывал на ноутбуке, и на работе, а там с 10000000 вываливался в: java.lang.OutOfMemoryError:
+    //TODO Java heap space :-) я смог убить JVM :-)
     static final int NUMBER_OF_ELEMENTS_TO_ADD_IN_COLLECTION = 1000000;
-    static final int NUMBER_OF_ELEMENTS_TO_FIND = 70;
-    static final int NUMBER_OF_ELEMENTS_TO_DELETE = 50;
+    static final int NUMBER_OF_ELEMENTS_TO_FIND = 700;
+    static final int NUMBER_OF_ELEMENTS_TO_DELETE = 500;
 
     static Random random = new Random();
 
@@ -124,7 +132,7 @@ public class WarBetweenArrayListAndHashSet {
         finish = getNanoTime();
         long resultNanoTime = finish - start;
         System.out.println("Delete " + NUMBER_OF_ELEMENTS_TO_FIND + ELEMENTS_IN + full.getClass().toString() + " is " + resultNanoTime + NANO_SECONDS);
-        System.out.println("Or " + getSeconds(resultNanoTime) + SECONDS);
+        System.out.println("Or " + String.format("%.15f", getSeconds(resultNanoTime)) + SECONDS);
     }
 
     static void deleteElementsInSet(HashSet<String> full, ArrayList<String> del) {
@@ -139,7 +147,7 @@ public class WarBetweenArrayListAndHashSet {
         finish = getNanoTime();
         long resultNanoTime = finish - start;
         System.out.println("Delete " + NUMBER_OF_ELEMENTS_TO_FIND + ELEMENTS_IN + full.getClass().toString() + " is " + resultNanoTime + NANO_SECONDS);
-        System.out.println("Or " + getSeconds(resultNanoTime) + SECONDS);
+        System.out.println("Or " + String.format("%.15f", getSeconds(resultNanoTime)) + SECONDS);
     }
 
     static void findElements(Collection<String> full, Collection<String> find) {
@@ -162,7 +170,7 @@ public class WarBetweenArrayListAndHashSet {
         finish = getNanoTime();
         long resultNanoTime = finish - start;
         System.out.println("Find " + NUMBER_OF_ELEMENTS_TO_FIND + ELEMENTS_IN + full.getClass().toString() + " is " + resultNanoTime + NANO_SECONDS);
-        System.out.println("Or " + getSeconds(resultNanoTime) + SECONDS);
+        System.out.println("Or " + String.format("%.15f", getSeconds(resultNanoTime)) + SECONDS);
     }
 
     static void findElementInSet(HashSet<String> full, ArrayList<String> find) {
@@ -177,7 +185,7 @@ public class WarBetweenArrayListAndHashSet {
         finish = getNanoTime();
         long resultNanoTime = finish - start;
         System.out.println("Find " + NUMBER_OF_ELEMENTS_TO_FIND + ELEMENTS_IN + full.getClass().toString() + " is " + resultNanoTime + NANO_SECONDS);
-        System.out.println("Or " + getSeconds(resultNanoTime) + SECONDS);
+        System.out.println("Or " + String.format("%.15f", getSeconds(resultNanoTime)) + SECONDS);
     }
 
     static long getNanoTime() {
@@ -196,7 +204,7 @@ public class WarBetweenArrayListAndHashSet {
         finish = getNanoTime();
         long resultNanoTime = finish - start;
         System.out.println("Add " + NUMBER_OF_ELEMENTS_TO_ADD_IN_COLLECTION + " elements to " + c.getClass().toString() + " is " + resultNanoTime + NANO_SECONDS);
-        System.out.println("Or " + getSeconds(resultNanoTime) + SECONDS);
+        System.out.println("Or " + String.format("%.15f", getSeconds(resultNanoTime)) + SECONDS);
 
     }
 
