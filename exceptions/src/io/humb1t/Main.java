@@ -11,11 +11,16 @@ public class Main {
     public static void main(String[] args) {
         try {
             new LifeCycleAction().execute();
-        } catch (LifeCycleActionExecutionException | AccessDeniedException e) {
-            System.err.println(e.getLocalizedMessage());
+        } catch (LifeCycleActionStartException | LifeCycleActionExecutionException | AccessDeniedException e) {
+            System.err.println(e.getMessage());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        /*
+        Что бы здесь не "вылетало" с Exception, прописал в настройках данного Main Working Directory
+         E:\Git\Java-RDL-Homeworks\exceptions\src\io\humb1t, создал там file.txt и добавил
+         его в Program Arguments
+         */
         try (FileInputStream fileInputStream = new FileInputStream(args[0])) {
 
         } catch (FileNotFoundException e) {
@@ -23,11 +28,29 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+/*
+Если раскоментировать human, то программа завершится Exception'ом NotCorrectAgeException,
+т.к. мы пытаемся присвоить "неправильное" значение.
+До этого момента, конструктор Класса, как бы "создает" объект, со значениями переменных класса,
+по умолчанию, в моем классе это ing age, со значением по умолчанию 0
+ */
+//        Human human = new Human(-1, Gender.MALE);
+        Human humanNormal = new Human(0, Gender.MALE);
+
+
+        try (RollCallOfHuman rollCallOfHuman = new RollCallOfHuman()) {
+            rollCallOfHuman.rollCall();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
 
+    /*
+    Создал исключение LifeCycleActionStartException, и "выбросил" его, "пробросил" его... блин... как правильно то?!
+     */
     public static class LifeCycleAction {
-        public void execute() throws LifeCycleActionExecutionException, AccessDeniedException {
-            throw new LifeCycleActionExecutionException();
+        public void execute() throws LifeCycleActionStartException, LifeCycleActionExecutionException, AccessDeniedException {
+            throw new LifeCycleActionStartException("This is LifeCycleActionStartException");
         }
     }
 
