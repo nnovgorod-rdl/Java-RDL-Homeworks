@@ -95,9 +95,9 @@ public class Main {
 
 /*
 * 5.There is an old war between ArrayList and Linked List - choose new fighters and implement your own benchmark (Vector vs Queue for example). Write down your thoughts.
-
+i declare war between ArrayList and all others collection
+* ArrayList is very easy to understanding, most often used, does not have unnecessary and confusing functionality
  * */
-
 
 /*
 6. Map is very good in implementation of simple caches). Implement your own cache using Map.
