@@ -97,3 +97,15 @@ public class Main {
 * 5.There is an old war between ArrayList and Linked List - choose new fighters and implement your own benchmark (Vector vs Queue for example). Write down your thoughts.
 
  * */
+
+
+/*
+6. Map is very good in implementation of simple caches). Implement your own cache using Map.
+For exemle, is wery simple Exemple:
+we put in map some Object, and we take Objects according to a certain sign
+HasheMap <Object, Object> cache = new HasheMap();
+cache.put("one", 1);
+cache.put("str", "Some string");
+assertEquals(new Integer(1), cache.get("one", Integer.class));
+assertEquals("Some string", cache.get("str", String.class));
+*/
