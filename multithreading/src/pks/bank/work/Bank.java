@@ -1,17 +1,18 @@
 package pks.bank.work;
 
 import pks.bank.exception.NotEnoughMoneyInTheBankException;
-import pks.bank.exception.ZeroMoneyInTheBankException;
 
-class Bank {
+public class Bank {
+    private final int MONEY_IN_THE_BANK = 5000;
     private int moneyAmount;
 
-    public void setMoneyAmount(int moneyAmount) {
-        if (moneyAmount <= 0) {
-            throw new ZeroMoneyInTheBankException();
-        } else {
-            this.moneyAmount = moneyAmount;
-        }
+    //Сразу установим сумму в банке
+    public Bank() {
+        this.moneyAmount = MONEY_IN_THE_BANK;
+    }
+
+    public int getMoneyAmount() {
+        return moneyAmount;
     }
 
     public void transferMoney(int amount) {
@@ -23,6 +24,6 @@ class Bank {
     }
 
     public boolean hasEnoughMoney(int amount) {
-        return amount >= moneyAmount;
+        return amount <= moneyAmount;
     }
 }
