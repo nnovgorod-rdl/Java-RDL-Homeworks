@@ -9,6 +9,25 @@ import java.util.Optional;
 public class Main {
 
     public static void main(String[] args) {
+        //Find out - what's a value inside your variable. Write down your thoughts
+/*
+* Probably variable mc2 - is null, because instance of class MyResource isn't
+assigned, because there is throwing an exception
+Sorry for my bad English!
+ */
+        try {
+            MyResource mc2 = new MyResource();
+        } catch (MyOwnException e) {
+            e.printStackTrace();
+        }
+
+        try (MyResource mc = new MyResource()) {
+            mc.somefunctional();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
         try {
             new LifeCycleAction().execute();
         } catch (LifeCycleActionExecutionException | AccessDeniedException e) {
@@ -33,7 +52,6 @@ public class Main {
 
     public static class LifeCycleActionExecutionException extends Exception {
     }
-
 
     public void exceptionVsResult() {
         final String result1 = (String) this.returnResult().value;
