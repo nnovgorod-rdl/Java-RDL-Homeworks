@@ -26,7 +26,7 @@ public class Main {
         System.out.println("");
 
 
-        /* Вопрос 2
+        /* Вопрос 2 - Collections
         Отбор заказов где itemsInOrder >=50
          */
         orders.stream()
@@ -35,7 +35,7 @@ public class Main {
         System.out.println("__________");
         System.out.println("");
 
-        //Ну или так - Вопрос 2 (но тут сделал меньше 10)
+        //Ну или так - Вопрос 2  - Collections (но тут сделал меньше 10)
         for (Order order : orders) {
             if (order.getItemsInOrder() < 10) {
                 System.out.println(order.toString());
@@ -76,6 +76,10 @@ public class Main {
             return itemsInOrder;
         }
 
+        public boolean moreThenTenItemInOrder(Order order) {
+            return order.getItemsInOrder() > 10;
+        }
+
         @Override
         public String toString() {
             return "Order{" +
@@ -101,13 +105,13 @@ public class Main {
 }
 
 
-        /* Вопрос 1 -
+        /* Вопрос 1 - Collections
         Лично мне, пока больше нравиться for, который с (int i = 0...), хотя все чаще, переделываю его на Enhanced for -
         for (Order order : orders). Из здесь представленных больше нравиться Enhanced for. Пока мне его проше писать,
         читать, понимать... Конструкция for (Iterator<Order> iterator = orders.iterator(); iterator.hasNext(); )
         как я думаю более громозкая и неудобная.
          */
 
-        /* Вопрос 4
+        /* Вопрос 4 - Collections
         Что бы избавиться от дубликатов колекции достаточно просто "запихнуть" ее в Set
          */
