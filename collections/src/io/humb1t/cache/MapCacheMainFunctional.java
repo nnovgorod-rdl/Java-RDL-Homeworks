@@ -53,30 +53,22 @@ public class MapCacheMainFunctional {
         simpleConsoleInput.scannerClose();
     }
 
+    /*
+    Modify your Cache from previous task and return Optional#empty instead of null if element is missing.
+     */
     static void findSiteInMap(String site) {
         Optional<CacheEnum> optionalCacheEnum = Optional.ofNullable(cacheMap.get(site));
 
         if (optionalCacheEnum.isPresent()) {
+            findSiteInCache(site, optionalCacheEnum.get());
         } else {
             printNotFound();
             //И сразу сайт в RAM
             addToMap(site, CacheEnum.RAM);
         }
-//        CacheEnum location = cacheMap.get(site);
-//        if (location == null) {
-//            printNotFound();
-//            //И сразу сайт в RAM
-//            addToMap(site, CacheEnum.RAM);
-//        } else if (location == CacheEnum.RAM) {
-//            printFoundRAM();
-//        } else {
-//            printFoundHDD();
-//            //Перекладываем сайт в RAM
-//            updateSiteInMap(site, CacheEnum.RAM);
-//        }
     }
 
-    public void findSiteInCache(String site, CacheEnum cache) {
+    static void findSiteInCache(String site, CacheEnum cache) {
         switch (cache) {
             case RAM:
                 printFoundRAM();
