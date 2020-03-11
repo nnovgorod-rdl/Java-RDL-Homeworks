@@ -1,4 +1,4 @@
-package io.humb1t.cache;
+package io.humb1t.functional;
 
 import io.humb1t.cache.console.SimpleConsoleInput;
 import io.humb1t.cache.console.SimpleConsoleOutput;

@@ -1,4 +1,4 @@
-package io.humb1t.cache.factory;
+package io.humb1t.functional.factory;
 
 import io.humb1t.OrderStatus;
 

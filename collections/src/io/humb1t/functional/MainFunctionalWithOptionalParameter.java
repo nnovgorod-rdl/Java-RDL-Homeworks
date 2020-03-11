@@ -1,4 +1,6 @@
-package io.humb1t;
+package io.humb1t.functional;
+
+import io.humb1t.OrderStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,9 +42,10 @@ public class MainFunctionalWithOptionalParameter {
         incoming parameters? Write down your thoughts.
 
         В данном применении Optional, есть как плюсы, так и минусы. По поводу этого даже, как я понял, идет "холивар".
-        Вот что лично я думаю. Нужно решать использовать Optional,
+
         Плюсы: можно сделать значение метода, в том числе, конструктора (он ведь тоже метод) по умолчанию.
         Минус - более "громозкий" код.
+
         Самый "потрясный" топик - https://ru.stackoverflow.com/a/825409 - полностью согласен с автором
          */
 
