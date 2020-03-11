@@ -39,7 +39,10 @@ public class MyCaсhe<K, V> {
     }
 
     public V get(K key) {
-        return globalMap.get(new Key(key));
+        Key k = new Key(key);
+        if(globalMap.containsKey(k))
+        return globalMap.get(new Key(k));
+        else return null;
     }
 
     public void remove(K key) {
