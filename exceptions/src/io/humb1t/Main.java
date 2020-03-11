@@ -14,6 +14,7 @@ public class Main {
 * Probably variable mc2 - is null, because instance of class MyResource isn't
 assigned, because there is throwing an exception
 Sorry for my bad English!
+*
  */
         try {
             MyResource mc2 = new MyResource();
