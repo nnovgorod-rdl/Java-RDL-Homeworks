@@ -3,9 +3,8 @@ package io.humb1t;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
-public class MainFunctionalWithOptionalParameter {
+public class MainFunctionalWithoutOptionalParameterForOrderFactory {
     enum OrderStatus {
         NOT_STARTED, PROCESSING, COMPLETED
     }
@@ -18,17 +17,16 @@ public class MainFunctionalWithOptionalParameter {
          */
 
         List<Order> orders = new ArrayList<>();
-        orders.add(new Order(OrderStatus.COMPLETED, Optional.of(70)));
-        orders.add(new Order(OrderStatus.NOT_STARTED, Optional.of(30)));
-        orders.add(new Order(OrderStatus.PROCESSING, Optional.of(5)));
-        orders.add(new Order(OrderStatus.NOT_STARTED, Optional.of(100)));
-        orders.add(new Order(OrderStatus.NOT_STARTED, Optional.of(29)));
-        orders.add(new Order(OrderStatus.COMPLETED, Optional.of(51)));
-        orders.add(new Order(OrderStatus.PROCESSING, Optional.of(73)));
-        orders.add(new Order(OrderStatus.NOT_STARTED, Optional.of(3)));
-        orders.add(new Order(OrderStatus.COMPLETED, Optional.of(1)));
-        orders.add(new Order(OrderStatus.COMPLETED, Optional.empty()));
-//        orders.add(new Order(OrderStatus.COMPLETED, Optional.of(-3)));
+        orders.add(new Order(OrderStatus.COMPLETED, 70));
+        orders.add(new Order(OrderStatus.NOT_STARTED, 30));
+        orders.add(new Order(OrderStatus.PROCESSING, 5));
+        orders.add(new Order(OrderStatus.NOT_STARTED, 100));
+        orders.add(new Order(OrderStatus.NOT_STARTED, 29));
+        orders.add(new Order(OrderStatus.COMPLETED, 51));
+        orders.add(new Order(OrderStatus.PROCESSING, 73));
+        orders.add(new Order(OrderStatus.NOT_STARTED, 3));
+        orders.add(new Order(OrderStatus.COMPLETED, 1));
+//        orders.add(new Order(OrderStatus.COMPLETED, -3));
 
         orders.stream()
                 .filter(order -> order.moreThenFiftyItemInOrder(order))
@@ -50,15 +48,13 @@ public class MainFunctionalWithOptionalParameter {
         Самый "потрясный" топик - https://ru.stackoverflow.com/a/825409 - полностью согласен с автором
          */
 
-        public Order(OrderStatus status, Optional<Integer> optionalInteger) {
-            int itemsInOrderForCreate= optionalInteger.orElse(1);
-
-            if (status == null || itemsInOrderForCreate <= 0) {
+        public Order(OrderStatus status, int itemsInOrder) {
+            if (status == null || itemsInOrder <= 0) {
                 throw new IllegalArgumentException();
             }
 
             this.status = status;
-            this.itemsInOrder = itemsInOrderForCreate;
+            this.itemsInOrder = itemsInOrder;
         }
 
         public OrderStatus getStatus() {
