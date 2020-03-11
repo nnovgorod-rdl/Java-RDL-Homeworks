@@ -76,10 +76,6 @@ public class Main {
             return itemsInOrder;
         }
 
-        public boolean moreThenTenItemInOrder(Order order) {
-            return order.getItemsInOrder() > 10;
-        }
-
         @Override
         public String toString() {
             return "Order{" +
