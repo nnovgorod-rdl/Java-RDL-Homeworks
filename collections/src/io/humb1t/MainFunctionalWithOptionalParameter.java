@@ -6,10 +6,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 public class MainFunctionalWithOptionalParameter {
-    enum OrderStatus {
-        NOT_STARTED, PROCESSING, COMPLETED
-    }
-
     public static void main(String[] args) {
         /*
         Modify your Order class, create method which would return boolean depends

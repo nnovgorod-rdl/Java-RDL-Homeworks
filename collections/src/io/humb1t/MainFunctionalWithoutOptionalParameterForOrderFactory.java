@@ -5,11 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class MainFunctionalWithoutOptionalParameterForOrderFactory {
-    enum OrderStatus {
-        NOT_STARTED, PROCESSING, COMPLETED
-    }
-
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         /*
         Modify your Order class, create method which would return boolean depends
         on the value of numeric field (which was added in previous task).

@@ -51,11 +51,6 @@ public class Main {
                 .collect(Collectors.groupingBy(Order::getStatus));
     }
 
-
-    public enum OrderStatus {
-        NOT_STARTED, PROCESSING, COMPLETED
-    }
-
     public static class Order {
         public final OrderStatus status;
         private int itemsInOrder;
