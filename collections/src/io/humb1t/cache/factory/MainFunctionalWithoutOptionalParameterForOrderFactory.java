@@ -8,6 +8,14 @@ import java.util.List;
 public class MainFunctionalWithoutOptionalParameterForOrderFactory {
     public static void main(String[] args) {
 
+        /*
+        Скорее всего я не понял задание
+        Create new interface called OrderFactory. Interface should provide methods for creation of Orders with different
+        OrderStatuses. For each status create default method. What method should provide implementation of this
+        interface? Write your own implementation.
+
+        Подсказочку бы... :-)
+         */
         OrderFactory orderFactory = new OrderFactory() {
         };
 
