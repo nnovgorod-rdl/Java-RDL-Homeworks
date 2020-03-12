@@ -2,15 +2,36 @@ package pks.bd;
 
 import java.util.concurrent.BlockingDeque;
 
-public class SimpleConsumer implements Runnable {
+class SimpleConsumer implements Runnable {
     private final BlockingDeque<Integer> integerBlockingDeque;
 
-    public SimpleConsumer(BlockingDeque<Integer> integerBlockingDeque) {
+    SimpleConsumer(BlockingDeque<Integer> integerBlockingDeque) {
         this.integerBlockingDeque = integerBlockingDeque;
     }
 
     @Override
     public void run() {
         System.out.println("SimpleConsumer is started");
+        try {
+            Thread.sleep(MainBlockingDeque.CONSUMER_SLEEP_ON_START);
+            for (int i = 0; i < MainBlockingDeque.STEP; i++) {
+                int value;
+                if (i % 2 == 0) {
+                    value = integerBlockingDeque.takeFirst();
+                } else {
+                    value = integerBlockingDeque.takeLast();
+                }
+                //Тут он, как я понимаю, если забирать нечего, заблокировался
+
+                System.out.println("SimpleConsumer get " + value + " from BlockingDeque");
+
+                //переназначу int, для установки сна
+                value = MainBlockingDeque.random.nextInt(MainBlockingDeque.MAX_SLEEP);
+                Thread.sleep(value);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
