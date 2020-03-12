@@ -3,7 +3,7 @@ package pks.bank.work;
 import pks.bank.exception.NotEnoughMoneyInTheBankException;
 
 public class Bank {
-    private final int MONEY_IN_THE_BANK = 5000;
+    private final int MONEY_IN_THE_BANK = 1000;
     private int moneyAmount;
 
     //Сразу установим сумму в банке
@@ -11,11 +11,11 @@ public class Bank {
         this.moneyAmount = MONEY_IN_THE_BANK;
     }
 
-    public int getMoneyAmount() {
+    public synchronized int getMoneyAmount() {
         return moneyAmount;
     }
 
-    public void transferMoney(int amount) {
+    public synchronized void transferMoney(int amount) {
         if ((moneyAmount - amount) < 0) {
             throw new NotEnoughMoneyInTheBankException();
         } else {
@@ -23,7 +23,7 @@ public class Bank {
         }
     }
 
-    public boolean hasEnoughMoney(int amount) {
+    public synchronized boolean hasEnoughMoney(int amount) {
         return amount <= moneyAmount;
     }
 }

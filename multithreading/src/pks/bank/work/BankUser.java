@@ -6,8 +6,8 @@ public class BankUser implements Runnable {
     private Bank bank;
     public String nameBankUser;
     private final Random random = new Random();
-    private final int MAX_MONEY_TO_TRANSFER = 100;
-    private final int TIME_TO_SLEEP = 100;
+    private final int MAX_MONEY_TO_TRANSFER = 10;
+    private final int TIME_TO_SLEEP = 10;
 
     public BankUser(Bank bank, String nameBankUser) {
         this.bank = bank;
