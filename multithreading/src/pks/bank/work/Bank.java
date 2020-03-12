@@ -16,6 +16,10 @@ public class Bank {
     }
 
     public synchronized void transferMoney(int amount) {
+        if(!hasEnoughMoney(amount)) {
+            return;
+        } //Конечно костыльно, но перед тем, как снять, проверям, а хватает ли денег
+
         if ((moneyAmount - amount) < 0) {
             throw new NotEnoughMoneyInTheBankException();
         } else {

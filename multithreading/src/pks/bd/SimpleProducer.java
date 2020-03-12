@@ -13,6 +13,7 @@ import java.util.concurrent.BlockingDeque;
     public void run() {
         System.out.println("SimpleProducer is started");
         try {
+            Thread.sleep(MainBlockingDeque.PRODUCER_SLEEP_ON_START);
             for (int i = 0; i < MainBlockingDeque.STEP; i++) {
                int value =  MainBlockingDeque.random.nextInt(MainBlockingDeque.MAX_INT_VALUE);
                 integerBlockingDeque.putFirst(value);

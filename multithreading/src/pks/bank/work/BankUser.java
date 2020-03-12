@@ -8,6 +8,17 @@ public class BankUser implements Runnable {
     private final Random random = new Random();
     private final int MAX_MONEY_TO_TRANSFER = 10;
     private final int TIME_TO_SLEEP = 10;
+    /*
+    В Bank все методы сделал synchronized, но не давать потоку "спать"
+    выставив TIME_TO_SLEEP = 10, например, у меня все равно вывалилось
+    NotEnoughMoneyInTheBankException, видимо некорректная реализация метода run
+    1-й поток спрашивает - bank.hasEnoughMoney(moneyToTransfer), получает true, т.к. деньги есть
+    2-поток снимает деньги, со счета
+    1-й поток снимает деньги, и вылетат с NotEnoughMoneyInTheBankException
+
+    Теперь у меня ситуация наоборот, вчера я не мог воспроизвести ошибку, сегодня не могу
+    понять, как ее решить
+     */
 
     public BankUser(Bank bank, String nameBankUser) {
         this.bank = bank;
