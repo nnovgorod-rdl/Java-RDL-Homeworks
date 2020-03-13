@@ -16,9 +16,20 @@ public class Bank {
     }
 
     public synchronized void transferMoney(int amount) {
-        if(!hasEnoughMoney(amount)) {
+        if (!hasEnoughMoney(amount)) {
             return;
-        } //Конечно костыльно, но перед тем, как снять, проверям, а хватает ли денег
+        }
+        /*
+        Конечно, костыльно, но перед тем, как снять, проверяем, а хватает ли денег - вчерашнее 12-03-2020
+        Хотя, сейчас думаю, что это не костыль.
+        Метод run написан согласно ТЗ :-)
+        И, потоки, все делают "логически правильно"
+        1-й поток спрашивает - bank.hasEnoughMoney(moneyToTransfer), получает true, т.к. деньги есть
+        2-поток снимает деньги, со счета. Он уже раньше проверил, денег хватает.
+        1-й поток снимает деньги, и вылетат с NotEnoughMoneyInTheBankException
+
+        Поэтому или переделываем run, или дополнительная проверка, что и сделано :-)
+         */
 
         if ((moneyAmount - amount) < 0) {
             throw new NotEnoughMoneyInTheBankException();
