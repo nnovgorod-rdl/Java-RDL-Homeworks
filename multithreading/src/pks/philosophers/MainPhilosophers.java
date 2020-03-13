@@ -1,9 +1,11 @@
 package pks.philosophers;
 
 public class MainPhilosophers {
+    static final int NUMBER_OF_PHILOSOPHERS_FORKS = 5;
+
     public static void main(String[] args) {
-        Philosopher[] philosophers = new Philosopher[5];
-        Object[] forks = new Object[philosophers.length];
+        Philosopher[] philosophers = new Philosopher[NUMBER_OF_PHILOSOPHERS_FORKS];
+        Object[] forks = new Object[NUMBER_OF_PHILOSOPHERS_FORKS];
 
         for (int i = 0; i < forks.length; i++) {
             forks[i] = new Object();
@@ -19,6 +21,8 @@ public class MainPhilosophers {
             ловим Deadlock
 
             И Ваше решение
+            Попробую еще найти все таки для себя, решение с Официантом, которое, я бы понял. Пока все что нахожу
+            вроде понятно, но не до конца, а просто копипастить не хочется :-)
              */
 
             if (i == philosophers.length - 1) {

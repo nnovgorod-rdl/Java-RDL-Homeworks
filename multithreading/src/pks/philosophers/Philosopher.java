@@ -1,6 +1,6 @@
 package pks.philosophers;
 
-public class Philosopher implements Runnable {
+class Philosopher implements Runnable {
 
     private final Object leftFork;
     private final Object rightFork;
