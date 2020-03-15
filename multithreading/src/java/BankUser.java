@@ -1,8 +1,10 @@
 class BankUser extends Thread{
+    String name;
     Bank bank;
 
-    BankUser(Bank bank) {
+    BankUser(Bank bank, String name) {
         this.bank = bank;
+        this.name = name;
     }
 
     public void makeTransfer (int moneToTransfer) throws NotEnoughMoneyException {
@@ -18,7 +20,8 @@ class BankUser extends Thread{
     {
         while (true) {
             try {
-                this.makeTransfer(1);
+                System.out.println(this.name);
+                this.makeTransfer(5);
             } catch (NotEnoughMoneyException e) {
                 System.out.println("Деньги кончились");
                 e.printStackTrace();
