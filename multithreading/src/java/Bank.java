@@ -1,28 +1,30 @@
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Bank {
-    private int moneyAmount;
+    private AtomicInteger moneyAmount;
 
    public void transferMoney(int amount) throws NotEnoughMoneyException {
-        if (amount > this.moneyAmount)
+        if (amount > this.moneyAmount.get())
             throw new NotEnoughMoneyException("Not enough money in the account");
         else {
-            this.setMoneyAmount(this.getMoneyAmount()-amount);
-            System.out.println("Списано 5 тэнге, на счету осталось - "+this.getMoneyAmount() + "денег");
+            this.setMoneyAmount(new AtomicInteger(this.getMoneyAmount().get()-amount));
+            System.out.println("Списано 5 тэнге, на счету осталось - "+this.getMoneyAmount().get() + "денег");
         }
     }
 
-    public boolean hasEnoughMoney(int amount) {
-        return amount < this.moneyAmount;
+   public boolean hasEnoughMoney(int amount) {
+        return amount < this.moneyAmount.get();
     }
 
     public Bank(int moneyAmount) {
-        this.moneyAmount = moneyAmount;
+        this.moneyAmount = new AtomicInteger(moneyAmount);
     }
 
-    public int getMoneyAmount() {
+    public AtomicInteger getMoneyAmount() {
         return moneyAmount;
     }
 
-    public void setMoneyAmount(int moneyAmount) {
+    public void setMoneyAmount(AtomicInteger moneyAmount) {
         this.moneyAmount = moneyAmount;
     }
 }

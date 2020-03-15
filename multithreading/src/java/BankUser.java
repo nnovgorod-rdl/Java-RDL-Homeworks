@@ -1,4 +1,4 @@
-class BankUser extends Thread{
+class BankUser extends Thread {
     String name;
     Bank bank;
 
@@ -6,14 +6,15 @@ class BankUser extends Thread{
         this.bank = bank;
         this.name = name;
     }
-
-    public void makeTransfer (int moneToTransfer) throws NotEnoughMoneyException {
-        if(bank.hasEnoughMoney(moneToTransfer)){
-                this.bank.transferMoney(moneToTransfer);
-        }
-        else {
-         throw new NotEnoughMoneyException("Денег нет!");}
+    public void makeTransfer(int moneToTransfer) throws NotEnoughMoneyException {
+        synchronized (bank){
+        if (bank.hasEnoughMoney(moneToTransfer)) {
+            this.bank.transferMoney(moneToTransfer);
+        } else {
+            throw new NotEnoughMoneyException("Денег нет!");
+        }}
     }
+
 
     @Override
     public void run()
