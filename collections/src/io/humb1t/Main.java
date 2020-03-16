@@ -34,10 +34,7 @@ public class Main {
 
         Map<OrderStatus, List<Order>> ordersByStatus = orders.stream()
                 .collect(Collectors.groupingBy(Order::getStatus));
-
-
     }
-
 
     public enum OrderStatus {
         NOT_STARTED, PROCESSING, COMPLETED
