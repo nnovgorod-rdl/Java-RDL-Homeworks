@@ -11,8 +11,8 @@ public class Main {
         Class c = new Order().getClass();
         Class os = OrderStatus.PROCESSING.getClass();
         Class primitiveClass = boolean.class;
-//        Class orderClassByName = Class.forName("io.humb1t.Main.Order");
-//        Class arrayClassByStrangeName = Class.forName("[L.io.humb1t.Main.Order;");
+        Class orderClassByName = Class.forName("io.humb1t.Main.Order");
+        Class arrayClassByStrangeName = Class.forName("[L.io.humb1t.Main.Order;");
         Class voidClass = Void.TYPE;
 
         final Class<Processor> processorClass = Processor.class;
