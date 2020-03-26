@@ -3,11 +3,22 @@ package pks.bank.work;
 import java.util.Random;
 
 public class BankUser implements Runnable {
-    private Bank bank;
-    public String nameBankUser;
     private final Random random = new Random();
     private final int MAX_MONEY_TO_TRANSFER = 10;
-    private final int TIME_TO_SLEEP = 10;
+    private final int TIME_TO_SLEEP_MS = 10;
+
+    private Bank bank;
+    public String nameBankUser;
+
+    /*
+    Константы обычно объявляют выше проперти класса.
+
+    В случае констант, где имеет значение в чем именно это задано,
+    имеет смысл указывать единицы измерения в имени. E.g.: TIME_TO_SLEEP_MS
+
+    Сделал
+     */
+
     /*
     В Bank все методы сделал synchronized, но не давать потоку "спать"
     выставив TIME_TO_SLEEP = 10, например, у меня все равно вывалилось
@@ -40,7 +51,7 @@ public class BankUser implements Runnable {
                 }
                 System.out.println("In the Bank - " + bank.getMoneyAmount() + " money");
                 System.out.println("");
-                int sleep = random.nextInt(TIME_TO_SLEEP);
+                int sleep = random.nextInt(TIME_TO_SLEEP_MS);
                 Thread.sleep(sleep);
             }
 

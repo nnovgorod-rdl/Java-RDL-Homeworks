@@ -3,12 +3,19 @@ package pks.bank.work;
 import pks.bank.exception.NotEnoughMoneyInTheBankException;
 
 public class Bank {
-    private final int MONEY_IN_THE_BANK = 1000;
     private int moneyAmount;
 
-    //Сразу установим сумму в банке
-    public Bank() {
-        this.moneyAmount = MONEY_IN_THE_BANK;
+    /*
+    +    private final int MONEY_IN_THE_BANK = 1000;
+
+    Не понимаю для чего здесь эта константа. В лучшем случае ее можно вынести в класс с функцией мэйн и
+    передавать сюда как параметр конструктора.
+    Либо напрямую присваивать в конструкторе значение.
+
+    Убрал
+     */
+    public Bank(int moneyAmount) {
+        this.moneyAmount = moneyAmount;
     }
 
     public synchronized int getMoneyAmount() {

@@ -3,6 +3,7 @@ package pks.bank;
 import pks.bank.work.Bank;
 import pks.bank.work.BankUser;
 
+//TODO проверь!!!
 public class MainBank {
     static BankUser bankUserFirst;
     static BankUser bankUserSecond;
@@ -16,7 +17,7 @@ public class MainBank {
     static BankUser bankUserTenth;
 
     public static void main(String[] args) {
-        Bank bank = new Bank();
+        Bank bank = new Bank(1000);
         System.out.println(bank.getMoneyAmount());
 
         bankUserFirst = new BankUser(bank, "01");

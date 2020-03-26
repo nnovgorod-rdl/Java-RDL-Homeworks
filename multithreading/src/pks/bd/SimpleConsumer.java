@@ -13,7 +13,7 @@ class SimpleConsumer implements Runnable {
     public void run() {
         System.out.println("SimpleConsumer is started");
         try {
-            Thread.sleep(MainBlockingDeque.CONSUMER_SLEEP_ON_START);
+            Thread.sleep(MainBlockingDeque.CONSUMER_SLEEP_ON_START_MS);
             for (int i = 0; i < MainBlockingDeque.STEP; i++) {
                 int value;
                 if (i % 2 == 0) {
@@ -24,10 +24,6 @@ class SimpleConsumer implements Runnable {
                 //Тут он, как я понимаю, если забирать нечего, заблокировался
 
                 System.out.println("SimpleConsumer get " + value + " from BlockingDeque");
-
-                //переназначу int, для установки сна
-                value = MainBlockingDeque.random.nextInt(MainBlockingDeque.MAX_SLEEP);
-                Thread.sleep(value);
             }
 
         } catch (Exception e) {

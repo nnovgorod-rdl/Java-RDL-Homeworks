@@ -13,17 +13,13 @@ import java.util.concurrent.BlockingDeque;
     public void run() {
         System.out.println("SimpleProducer is started");
         try {
-            Thread.sleep(MainBlockingDeque.PRODUCER_SLEEP_ON_START);
+            Thread.sleep(MainBlockingDeque.PRODUCER_SLEEP_ON_START_MS);
             for (int i = 0; i < MainBlockingDeque.STEP; i++) {
                int value =  MainBlockingDeque.random.nextInt(MainBlockingDeque.MAX_INT_VALUE);
                 integerBlockingDeque.putFirst(value);
                 //Тут он, как я понимаю, если места нет, заблокировался
 
                 System.out.println("SimpleProducer put " + value + " to BlockingDeque");
-
-                //переназначу int, для установки сна
-                value = MainBlockingDeque.random.nextInt(MainBlockingDeque.MAX_SLEEP);
-                Thread.sleep(value);
             }
         } catch (Exception e) {
             e.printStackTrace();
