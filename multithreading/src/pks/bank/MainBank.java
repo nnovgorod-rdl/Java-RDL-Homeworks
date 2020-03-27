@@ -40,6 +40,14 @@ public class MainBank {
         Thread eighth = new Thread(bankUserEighth);
         Thread ninth = new Thread(bankUserNinth);
         Thread tenth = new Thread(bankUserTenth);
+        /*
+        Блин... такой "ЛЯП" исправил...
+        > +        Thread sixth = new Thread(bankUserThird);
+        +        Thread seventh = new Thread(bankUserThird);
+        +        Thread eighth = new Thread(bankUserThird);
+        +        Thread ninth = new Thread(bankUserThird);
+        +        Thread tenth = new Thread(bankUserThird);
+         */
 
         first.start();
         second.start();

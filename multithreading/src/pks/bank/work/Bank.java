@@ -2,8 +2,10 @@ package pks.bank.work;
 
 import pks.bank.exception.NotEnoughMoneyInTheBankException;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Bank {
-    private int moneyAmount;
+    private AtomicInteger moneyAmount;
 
     /*
     +    private final int MONEY_IN_THE_BANK = 1000;
@@ -15,37 +17,29 @@ public class Bank {
     Убрал
      */
     public Bank(int moneyAmount) {
-        this.moneyAmount = moneyAmount;
+        this.moneyAmount = new AtomicInteger(moneyAmount);
     }
 
-    public synchronized int getMoneyAmount() {
-        return moneyAmount;
+    public int getMoneyAmount() {
+        return moneyAmount.get();
     }
 
-    public synchronized void transferMoney(int amount) {
-        if (!hasEnoughMoney(amount)) {
-            return;
-        }
+    public synchronized void transferMoney(int amount) throws NotEnoughMoneyInTheBankException {
         /*
-        Конечно, костыльно, но перед тем, как снять, проверяем, а хватает ли денег - вчерашнее 12-03-2020
-        Хотя, сейчас думаю, что это не костыль.
-        Метод run написан согласно ТЗ :-)
-        И, потоки, все делают "логически правильно"
-        1-й поток спрашивает - bank.hasEnoughMoney(moneyToTransfer), получает true, т.к. деньги есть
-        2-поток снимает деньги, со счета. Он уже раньше проверил, денег хватает.
-        1-й поток снимает деньги, и вылетат с NotEnoughMoneyInTheBankException
-
-        Поэтому или переделываем run, или дополнительная проверка, что и сделано :-)
+        Как все таки "правильнее"
+        if (moneyAmount.addAndGet(-amount) < 0) {
+        или
+        if ((moneyAmount.get() - amount) < 0) {
+        ???
          */
-
-        if ((moneyAmount - amount) < 0) {
+        if ((moneyAmount.get() - amount) < 0) {
             throw new NotEnoughMoneyInTheBankException();
         } else {
-            moneyAmount -= amount;
+            moneyAmount.addAndGet(-amount);
         }
     }
 
     public synchronized boolean hasEnoughMoney(int amount) {
-        return amount <= moneyAmount;
+        return amount <= moneyAmount.get();
     }
 }
