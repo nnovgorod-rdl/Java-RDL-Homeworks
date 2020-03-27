@@ -7,10 +7,6 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class MainBlockingDeque {
     static final int STEP = 20;
     static final int MAX_INT_VALUE = 1000;
-
-    /*
-    Поиграться можно изменяя CONSUMER_SLEEP_ON_START и PRODUCER_SLEEP_ON_START
-     */
     static final int CONSUMER_SLEEP_ON_START_MS = 9000;
     static final int PRODUCER_SLEEP_ON_START_MS = 90;
     /*

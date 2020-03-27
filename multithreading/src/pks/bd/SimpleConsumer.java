@@ -25,7 +25,6 @@ class SimpleConsumer implements Runnable {
 
                 System.out.println("SimpleConsumer get " + value + " from BlockingDeque");
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
