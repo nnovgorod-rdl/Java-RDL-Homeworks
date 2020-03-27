@@ -52,18 +52,22 @@ public class MainBank {
         ninth.start();
         tenth.start();
 
-//        while (first.isAlive() || second.isAlive()
-//                || third.isAlive() || fourth.isAlive()
-//                || fifth.isAlive() || sixth.isAlive()
-//                || seventh.isAlive() || eighth.isAlive()
-//                || ninth.isAlive() || tenth.isAlive()) {
-//            try {
-//                Thread.sleep(1000);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
+        /*
+        +        while (first.isAlive() || second.isAlive()
+        +                || third.isAlive() || fourth.isAlive()
+        +                || fifth.isAlive() || sixth.isAlive()
+        +                || seventh.isAlive() || eighth.isAlive()
+        +                || ninth.isAlive() || tenth.isAlive()) {
+        +            try {
+        +                Thread.sleep(1000);
+        +            } catch (Exception e) {
+        +                e.printStackTrace();
 
+        Зачем здесь цикл?
+        Что произойдет с остальными потоками если этот тред завершит свое выполнение?
+
+        Остальные потоки продолжат свое "выполнение". Вы правы, цикл к данной ситуации попросту не
+        нужен. Убрал.
+        */
     }
-
 }
