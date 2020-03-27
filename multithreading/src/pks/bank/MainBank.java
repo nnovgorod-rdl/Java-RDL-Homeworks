@@ -3,7 +3,6 @@ package pks.bank;
 import pks.bank.work.Bank;
 import pks.bank.work.BankUser;
 
-//TODO проверь!!!
 public class MainBank {
     static BankUser bankUserFirst;
     static BankUser bankUserSecond;
@@ -34,13 +33,13 @@ public class MainBank {
         Thread first = new Thread(bankUserFirst);
         Thread second = new Thread(bankUserSecond);
         Thread third = new Thread(bankUserThird);
-        Thread fourth = new Thread(bankUserThird);
-        Thread fifth = new Thread(bankUserThird);
-        Thread sixth = new Thread(bankUserThird);
-        Thread seventh = new Thread(bankUserThird);
-        Thread eighth = new Thread(bankUserThird);
-        Thread ninth = new Thread(bankUserThird);
-        Thread tenth = new Thread(bankUserThird);
+        Thread fourth = new Thread(bankUserFourth);
+        Thread fifth = new Thread(bankUserFifth);
+        Thread sixth = new Thread(bankUserSixth);
+        Thread seventh = new Thread(bankUserSeventh);
+        Thread eighth = new Thread(bankUserEighth);
+        Thread ninth = new Thread(bankUserNinth);
+        Thread tenth = new Thread(bankUserTenth);
 
         first.start();
         second.start();
