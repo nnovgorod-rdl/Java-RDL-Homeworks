@@ -52,17 +52,17 @@ public class MainBank {
         ninth.start();
         tenth.start();
 
-        while (first.isAlive() || second.isAlive()
-                || third.isAlive() || fourth.isAlive()
-                || fifth.isAlive() || sixth.isAlive()
-                || seventh.isAlive() || eighth.isAlive()
-                || ninth.isAlive() || tenth.isAlive()) {
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+//        while (first.isAlive() || second.isAlive()
+//                || third.isAlive() || fourth.isAlive()
+//                || fifth.isAlive() || sixth.isAlive()
+//                || seventh.isAlive() || eighth.isAlive()
+//                || ninth.isAlive() || tenth.isAlive()) {
+//            try {
+//                Thread.sleep(1000);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
 
     }
 
