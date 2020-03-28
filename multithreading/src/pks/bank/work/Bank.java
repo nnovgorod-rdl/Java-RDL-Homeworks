@@ -25,13 +25,6 @@ public class Bank {
     }
 
     public synchronized void transferMoney(int amount) throws NotEnoughMoneyInTheBankException {
-        /*
-        Как все таки "правильнее"
-        if (moneyAmount.addAndGet(-amount) < 0) {
-        или
-        if ((moneyAmount.get() - amount) < 0) {
-        ???
-         */
         if ((moneyAmount.get() - amount) < 0) {
             throw new NotEnoughMoneyInTheBankException();
         } else {

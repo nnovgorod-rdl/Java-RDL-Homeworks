@@ -1,5 +1,7 @@
 package pks.bank.work;
 
+import pks.bank.exception.NotEnoughMoneyInTheBankException;
+
 import java.util.Random;
 
 public class BankUser implements Runnable {
@@ -19,18 +21,6 @@ public class BankUser implements Runnable {
     Сделал
      */
 
-    /*
-    В Bank все методы сделал synchronized, но не давать потоку "спать"
-    выставив TIME_TO_SLEEP = 10, например, у меня все равно вывалилось
-    NotEnoughMoneyInTheBankException, видимо некорректная реализация метода run
-    1-й поток спрашивает - bank.hasEnoughMoney(moneyToTransfer), получает true, т.к. деньги есть
-    2-поток снимает деньги, со счета
-    1-й поток снимает деньги, и вылетат с NotEnoughMoneyInTheBankException
-
-    Теперь у меня ситуация наоборот, вчера я не мог воспроизвести ошибку, сегодня не могу
-    понять, как ее решить
-     */
-
     public BankUser(Bank bank, String nameBankUser) {
         this.bank = bank;
         this.nameBankUser = nameBankUser;
@@ -41,7 +31,7 @@ public class BankUser implements Runnable {
         System.out.println(nameBankUser + " is started");
         try {
             while (bank.getMoneyAmount() > 0) {
-                int moneyToTransfer = random.nextInt(MAX_MONEY_TO_TRANSFER);
+                int moneyToTransfer = random.nextInt(MAX_MONEY_TO_TRANSFER) + 1;
 
                 if (bank.hasEnoughMoney(moneyToTransfer)) {
                     bank.transferMoney(moneyToTransfer);
@@ -49,13 +39,16 @@ public class BankUser implements Runnable {
                 } else {
                     System.out.println(nameBankUser + " wants too much money");
                 }
+
                 System.out.println("In the Bank - " + bank.getMoneyAmount() + " money");
                 System.out.println("");
+
                 int sleep = random.nextInt(TIME_TO_SLEEP_MS);
                 Thread.sleep(sleep);
             }
-
-        } catch (Exception e) {
+        } catch (NotEnoughMoneyInTheBankException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
