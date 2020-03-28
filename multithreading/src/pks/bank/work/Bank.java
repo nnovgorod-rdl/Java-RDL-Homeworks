@@ -24,6 +24,13 @@ public class Bank {
         return moneyAmount.get();
     }
 
+    /*
+    Synchronized избыточен для геттера. Здесь важна видимость.
+    Как можно добиться того, чтобы все потоки видели актуальное значение?
+
+    Надеюсь я корректно сделал через AtomicInteger :-)
+     */
+
     public synchronized void transferMoney(int amount) throws NotEnoughMoneyInTheBankException {
         if ((moneyAmount.get() - amount) < 0) {
             throw new NotEnoughMoneyInTheBankException();
