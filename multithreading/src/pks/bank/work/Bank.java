@@ -39,6 +39,14 @@ public class Bank {
         }
     }
 
+    /*
+    Результат проверок (строки 19 и 34) внутри synchronized функции должен совпадать, верно?
+    Кажется, что какая-то из проверок лишняя.
+    Почему в одном случае return, а в другом бросаем исключение?
+
+    Убрал лишнее.
+     */
+
     public synchronized boolean hasEnoughMoney(int amount) {
         return amount <= moneyAmount.get();
     }
