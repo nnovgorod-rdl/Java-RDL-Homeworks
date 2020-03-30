@@ -6,36 +6,36 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.stream.Collectors;
 
+import static io.humb1t.Task5.main5;
+
 public class Main {
-
+    public static List<Order> orders;
     public static void main(String[] args) {
-        Collection<String> c = Collections.EMPTY_LIST;
-        List<String> list = new ArrayList<>(c);
-        Main.Order orderer = new Main.Order(OrderStatus.COMPLETED);
-        List<Order> orders = Collections.singletonList(orderer);
-//2.Add numeric field to Order class, use it to filter collection of orders by some criteria (more than 50 order items for example).
-        orders.stream()
-                .filter(order -> order.numberOfOrder >= 50) //do something
-                .forEach(order -> System.out.println(order.toString()));
-
-        for (Order order : orders) {
-            if(order.numberOfOrder>=50)
-            {
-                //do something
-            }
-            System.out.println(order.toString());
-        }
-        for (Iterator<Order> iterator = orders.iterator(); iterator.hasNext();){
-            System.out.println(iterator.next().toString());
-        }
-
-        Map<OrderStatus, List<Order>> ordersByStatus = orders.stream()
-                .collect(Collectors.groupingBy(Order::getStatus));
-
-
+        main5();
+//        Collection<String> c = Collections.EMPTY_LIST;
+//        List<String> list = new ArrayList<>(c);
+//        Main.Order orderer = new Main.Order(OrderStatus.COMPLETED);
+//        orders = Collections.singletonList(orderer);
+////2.Add numeric field to Order class, use it to filter collection of orders by some criteria (more than 50 order items for example).
+//        orders.stream()
+//                .filter(order -> order.numberOfOrder >= 50) //do something
+//                .forEach(order -> System.out.println(order.toString()));
+//
+//        for (Order order : orders) {
+//            if(order.numberOfOrder>=50)
+//            {
+//                //do something
+//            }
+//            System.out.println(order.toString());
+//        }
+//        for (Iterator<Order> iterator = orders.iterator(); iterator.hasNext();){
+//            System.out.println(iterator.next().toString());
+//        }
+//
+//        Map<OrderStatus, List<Order>> ordersByStatus = orders.stream()
+//                .collect(Collectors.groupingBy(Order::getStatus));
     }
 
 
@@ -82,16 +82,6 @@ public class Main {
 * Collection<Integer> syncCollection = Collections.synchronizedCollection(new ArrayList<>())
 *
  * */
-/*
-    Imagine the situation when you have a Collection and should remove all duplicates in it. How would you do it?
-   in this situation i will use Set
-    Implement your solution using only Java SE.
-    CopyOnWriteArraySet<Integer> ArrSet = new CopyOnWriteArraySet<Integer>();
-    Just in case, i use CopyOnWriteArraySet.
-        Collection<String> list2 = new ArrayList<>();
-        CopyOnWriteArraySet<String> setlist = new CopyOnWriteArraySet<>();
-        setlist.addAll(list2);
-*/
 
 /*
 * 5.There is an old war between ArrayList and Linked List - choose new fighters and implement your own benchmark (Vector vs Queue for example). Write down your thoughts.
