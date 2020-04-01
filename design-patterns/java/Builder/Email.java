@@ -14,11 +14,13 @@ public class Email implements IEmailMessage, IRecepient {
 
     @Override
     public void send() {
+        System.out.println("The mail is sended");
     }
 
     @Override
     public IEmailMessage receive() {
-        return null;
+        System.out.println("The mail is received");
+        return new Email();
     }
 
     @Override

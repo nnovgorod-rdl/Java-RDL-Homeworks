@@ -1,3 +1,5 @@
+import io.humb1t.CurrentClass;
+import io.humb1t.DepCurrentClass;
 import io.humb1t.Task1Implementation;
 import org.junit.Assert;
 import org.junit.Before;
