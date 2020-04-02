@@ -6,6 +6,6 @@ import org.fundamentals.homework.voices.Meow;
 public class Cat implements Animal, Meow, MiceCatch {
     @Override
     public String getAnimalName() {
-        return "Cats";
+        return "Cat";
     }
 }
