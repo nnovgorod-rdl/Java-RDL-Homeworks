@@ -1,7 +1,11 @@
 package io.humb1t;
 
+import org.junit.jupiter.api.Assertions;
+
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import static java.lang.System.*;
 
 /* Вопрос 3 - пока для меня не решенный :-(
 Многопоточность мы правда еще не проходили, но попробую переделать пример из интернета :-)
@@ -26,22 +30,21 @@ public class ConcurrentLinkedQueueExample {
             Thread.sleep(1000);
         }
 
-        System.out.println("______");
-        System.out.println("");
-        System.out.println(queue);
-        System.exit(0);
+        out.println("______");
+        out.println("");
+        out.println(queue);
     }
 
 
     static class ProcessorFirst implements Runnable {
 
         public void run() {
-            System.out.println("ProcessorFirst started");
+            out.println("ProcessorFirst started");
             try {
                 for (int i = 1; i <= 10; i++) {
                     String str = "StringProcessorFirst" + i;
                     queue.add(str);
-                    System.out.println("ProcessorFirst added : "
+                    out.println("ProcessorFirst added : "
                             + str);
                     Thread.sleep(100);
                 }
@@ -55,12 +58,12 @@ public class ConcurrentLinkedQueueExample {
     static class ProcessorSecond implements Runnable {
 
         public void run() {
-            System.out.println("ProcessorSecond started");
+            out.println("ProcessorSecond started");
             try {
                 for (int i = 1; i <= 10; i++) {
                     String str = "StringProcessorSecond" + i;
                     queue.add(str);
-                    System.out.println("ProcessorSecond added : "
+                    out.println("ProcessorSecond added : "
                             + str);
                     Thread.sleep(30);
                 }
@@ -74,12 +77,12 @@ public class ConcurrentLinkedQueueExample {
     static class ProcessorThird implements Runnable {
 
         public void run() {
-            System.out.println("ProcessorThird started");
+            out.println("ProcessorThird started");
             try {
                 for (int i = 1; i <= 10; i++) {
                     String str = "StringProcessorThird" + i;
                     queue.add(str);
-                    System.out.println("ProcessorThird added : "
+                    out.println("ProcessorThird added : "
                             + str);
                     Thread.sleep(50);
                 }
@@ -87,6 +90,20 @@ public class ConcurrentLinkedQueueExample {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }
+    }
+
+    public static class Test {
+        /*
+        Это "хорошая практика" делать статический вложенный тест?
+        Из очевидных плюсов - можно без "хлопот" достучаться до всех полей их потестить по полной
+        Очевидный минус - дырка, т.к. он public static, хотя есть reflection и все равно, все "ломается"
+
+        И... вабще пока непонятно, как тестировать многопоточку
+         */
+        @org.junit.jupiter.api.Test
+        public void assertFieldClass() {
+            Assertions.assertEquals(ConcurrentLinkedQueue.class, queue.getClass());
         }
     }
 }
