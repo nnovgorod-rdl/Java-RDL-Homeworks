@@ -1,6 +1,6 @@
 package pks.decorator;
 
-import ent.pks.decorator.decorators.*;
+import pks.decorator.decorators.*;
 
 import static java.lang.System.out;
 
