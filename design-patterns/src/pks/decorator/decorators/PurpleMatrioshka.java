@@ -7,7 +7,7 @@ public class PurpleMatrioshka extends MatrioshkaDecorator {
     }
 
     private String purple() {
-        return " фиолетового цета";
+        return " фиолетового цвета";
     }
 
     @Override

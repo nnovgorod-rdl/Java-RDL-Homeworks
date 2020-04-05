@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BuilderTest {
     @Test
     @DisplayName("Full Recipient Test")
@@ -36,14 +39,30 @@ public class BuilderTest {
         Assertions.assertAll("emailMessage",
                 () -> Assertions.assertEquals("Test Subject", emailMessage.getSubject()),
                 () -> Assertions.assertEquals("Test Body", emailMessage.getBody()),
+
+                () -> Assertions.assertNotNull(emailMessage.getSender()),
                 () -> {
                     Recipient senderFromEmail = emailMessage.getSender();
-                    Assertions.assertNotNull(senderFromEmail);
                     Assertions.assertAll("senderFromEmail",
                             () -> Assertions.assertEquals("user9@server.com", senderFromEmail.getAddress()),
                             () -> Assertions.assertEquals("user9", senderFromEmail.getName())
                     );
+                },
+
+                () -> Assertions.assertNotNull(emailMessage.getRecipientsMessage()),
+                () -> {
+                    List<Recipient> recipientList = emailMessage.getRecipientsMessage();
+                    Assertions.assertAll("recipientList",
+                            () -> Assertions.assertEquals(recipientList.getClass(), ArrayList.class),
+                            () -> Assertions.assertEquals(2, recipientList.size()));
                 }
         );
     }
+
+    /*
+    Как я понимаю, у меня в EmailServer методы void, а их по нормальному проверить нельзя (или я просто не понимаю как,
+    если просто не понимаю, подскажите пожалуйста)
+    и такие методы лучше передалать, например в boolean
+     boolean send() - оправиль письмо, вернул true и т.д.? или все таки как то можно void проверить?
+     */
 }
