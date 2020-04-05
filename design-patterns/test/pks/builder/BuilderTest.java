@@ -53,7 +53,7 @@ public class BuilderTest {
                 () -> {
                     List<Recipient> recipientList = emailMessage.getRecipientsMessage();
                     Assertions.assertAll("recipientList",
-                            () -> Assertions.assertEquals(recipientList.getClass(), ArrayList.class),
+                            () -> Assertions.assertEquals(ArrayList.class, recipientList.getClass()),
                             () -> Assertions.assertEquals(2, recipientList.size()));
                 }
         );

@@ -1,10 +1,13 @@
 package pks.prototype;
 
+import java.util.Objects;
+
 public class Creature extends ACreature {
     public Creature(String name) {
         super();
         super.name = name;
     }
+
 
     public String getName() {
         return super.name;
@@ -16,6 +19,22 @@ public class Creature extends ACreature {
 
     public ICreature copy() {
         return new Creature(name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == this) return true;
+        if (!(o instanceof Creature)) {
+            return false;
+        }
+        Creature creature = (Creature) o;
+        return name == creature.name;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     @Override
