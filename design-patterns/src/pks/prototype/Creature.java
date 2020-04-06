@@ -21,6 +21,10 @@ public class Creature extends ACreature {
         return new Creature(name);
     }
 
+
+    /*
+    Может сам "нарываюсь". Но, нормальная реализация equals и hashCode?
+     */
     @Override
     public boolean equals(Object o) {
 
