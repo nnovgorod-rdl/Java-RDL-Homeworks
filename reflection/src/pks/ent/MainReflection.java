@@ -7,6 +7,7 @@ import java.util.List;
 
 import static java.lang.System.out;
 
+@SuppressWarnings("ALL")
 public class MainReflection {
     static Class[] interfaceArrayOfDeprecatedClass = null;
     static Class[] interfaceArrayOfCompareClass = null;
