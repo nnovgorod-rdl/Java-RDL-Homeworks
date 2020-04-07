@@ -5,5 +5,5 @@ Enum singleton
  */
 
 public enum Setup {
-    INSTANCE;
+    INSTANCE
 }

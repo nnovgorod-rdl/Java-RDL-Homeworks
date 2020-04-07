@@ -5,7 +5,7 @@ import pks.bank.exception.NotEnoughMoneyInTheBankException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Bank {
-    private AtomicInteger moneyAmount;
+    private final AtomicInteger moneyAmount;
 
     /*
     +    private final int MONEY_IN_THE_BANK = 1000;

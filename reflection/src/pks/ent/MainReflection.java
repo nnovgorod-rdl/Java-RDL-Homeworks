@@ -106,7 +106,7 @@ public class MainReflection {
     static void printClassIsDeprecated(List<Object> list) {
         for (Object object : list) {
             if (getClass(object).isAnnotationPresent(Deprecated.class)) {
-                out.println("");
+                out.println();
                 out.println(getClass(object) + " is Deprecated");
                 if (getSuperClass(object) != Object.class) {
                     out.println("Try to use Parent " + getSuperClass(object));

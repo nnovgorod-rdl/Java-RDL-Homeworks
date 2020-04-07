@@ -31,7 +31,7 @@ public class ConcurrentLinkedQueueExample {
         }
 
         out.println("______");
-        out.println("");
+        out.println();
         out.println(queue);
     }
 

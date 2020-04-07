@@ -32,9 +32,9 @@ public class PrototypeTest {
         Assertions.assertEquals(Creature.class, creature.getClass());
         ICreature copy = creature.copy();
         Assertions.assertEquals(creature.getClass(), copy.getClass());
-        Assertions.assertEquals(true, creature.equals(copy));
+        Assertions.assertTrue(creature.equals(copy));
         copy.setName("B");
-        Assertions.assertEquals(false, creature.equals(copy));
+        Assertions.assertFalse(creature.equals(copy));
     }
 
     @Test

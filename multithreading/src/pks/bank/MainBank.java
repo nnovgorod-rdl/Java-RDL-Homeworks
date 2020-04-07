@@ -5,6 +5,8 @@ import pks.bank.work.BankUser;
 
 import java.util.ArrayList;
 
+import static java.lang.System.*;
+
 public class MainBank {
     static ArrayList<BankUser> bankUserArrayList = new ArrayList<>();
     static ArrayList<Thread> threadsArrayList = new ArrayList<>();
@@ -12,7 +14,7 @@ public class MainBank {
 
     public static void main(String[] args) {
         Bank bank = new Bank(1000);
-        System.out.println(bank.getMoneyAmount());
+        out.println(bank.getMoneyAmount());
 
         createBankUsers(bank);
 

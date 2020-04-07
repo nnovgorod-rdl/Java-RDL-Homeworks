@@ -4,12 +4,14 @@ import pks.bank.exception.NotEnoughMoneyInTheBankException;
 
 import java.util.Random;
 
+import static java.lang.System.*;
+
 public class BankUser implements Runnable {
     private final Random random = new Random();
     private final int MAX_MONEY_TO_TRANSFER = 10;
     private final int TIME_TO_SLEEP_MS = 10;
 
-    private Bank bank;
+    private final Bank bank;
     public String nameBankUser;
 
     /*
@@ -28,7 +30,7 @@ public class BankUser implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(nameBankUser + " is started");
+        out.println(nameBankUser + " is started");
         try {
             while (bank.getMoneyAmount() > 0) {
                 // +1 добавлен, что-бы всегда хоть что то BankUser пытался звбрать
@@ -36,13 +38,13 @@ public class BankUser implements Runnable {
 
                 if (bank.hasEnoughMoney(moneyToTransfer)) {
                     bank.transferMoney(moneyToTransfer);
-                    System.out.println(nameBankUser + " get " + moneyToTransfer + " money");
+                    out.println(nameBankUser + " get " + moneyToTransfer + " money");
                 } else {
-                    System.out.println(nameBankUser + " wants too much money");
+                    out.println(nameBankUser + " wants too much money");
                 }
 
-                System.out.println("In the Bank : " + bank.getMoneyAmount() + " money");
-                System.out.println("");
+                out.println("In the Bank : " + bank.getMoneyAmount() + " money");
+                out.println();
 
                 int sleep = random.nextInt(TIME_TO_SLEEP_MS);
                 Thread.sleep(sleep);
