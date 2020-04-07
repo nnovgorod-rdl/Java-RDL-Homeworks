@@ -1,3 +1,5 @@
+package BankAndBankUsers;
+
 class BankUser extends Thread {
     String name;
     Bank bank;
