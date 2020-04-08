@@ -11,6 +11,6 @@ public class BigBlueMatr extends MatrioshkaBlue{
         }
 
         private String printSize() {
-            return "Большая ";
+            return "Big";
         }
     }

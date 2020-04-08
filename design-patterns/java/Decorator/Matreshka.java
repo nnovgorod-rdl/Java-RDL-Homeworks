@@ -4,7 +4,7 @@ public class Matreshka extends AMatrioshka {
 
     public String printName()
     {
-        return " матрешка";
+        return " matreshka";
     }
 
     public Matreshka() {

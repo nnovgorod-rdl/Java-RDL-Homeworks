@@ -11,6 +11,6 @@ public class MatrioshkaBlue extends Matreshka {
     }
 
     private String printColor() {
-        return " синяя";
+        return " blue";
     }
 }
