@@ -50,7 +50,7 @@ public class MainFunctionalWithOptionalParameter {
          */
 
         public Order(OrderStatus status, Optional<Integer> optionalInteger) {
-            int itemsInOrderForCreate= optionalInteger.orElse(1);
+            int itemsInOrderForCreate = optionalInteger.orElse(1);
 
             if (status == null || itemsInOrderForCreate <= 0) {
                 throw new IllegalArgumentException();
