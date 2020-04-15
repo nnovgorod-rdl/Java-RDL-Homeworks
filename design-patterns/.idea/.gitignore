@@ -15,7 +15,6 @@
 *.tar.gz
 *.rar
 hs_err_pid*
-
-
+/out/
 # Default ignored files
 /workspace.xml
