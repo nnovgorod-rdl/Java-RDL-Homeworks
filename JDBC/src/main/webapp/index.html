@@ -1,0 +1,67 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="jQuerry.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <title>EPAM task jdbc</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+<div>
+    <p>Список сотрудников указанного подразделения с сортировкой по зарплате</p>
+    <form class="inputStaff">
+        <input type="text" placeholder="Задание-1" id="t1"/>
+    </form>
+    <button id="button1">Задание 1</button>
+    <br>
+</div>
+
+<div>
+    <p>Список сотрудников указанного подразделения с сортировкой по ФИО</p>
+    <form class="inputStaff">
+        <input type="text" placeholder="задание_2" id="t2"/>
+    </form>
+    <button id="button2">Задание 2</button>
+    <br>
+</div>
+<div>
+    <p>Список сотрудников у который оклад больше, чем у заданного</p>
+    <form class="inputStaff">
+        <input type="number" placeholder="задание_3" id="t3"/>
+    </form>
+
+    <button id="button3">Задание 3</button>
+    <br>
+</div>
+<div>
+    <p>Если ввели ФИО рядового сотрудника - то вывести только его зарплату. <br>Если ввели начальника подразделения - вывести список всех его подчинённых с указанием зарплаты и сортировкой по ФИО</p>
+    <form class="inputStaff">
+        <input type="text" placeholder="задание_4" id="t4"/>
+    </form>
+    <button id="button4">Задание 4</button>
+    <br>
+</div>
+
+<table id="userTable" class="table table-dark">
+    <thead id="backgroundSearchHead">
+    <tr>
+        <th>FIO</th>
+        <th>salary</th>
+        <th>position</th>
+        <th>id</th>
+    </tr>
+    </thead>
+    <tbody id="outputTable">
+
+    </tbody>
+</table>
+
+
+
+<script src="main.js"></script>
+</body>
+</html>
