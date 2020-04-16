@@ -23,7 +23,7 @@ public class MainJDBC {
         Перед первым запуском раскомментировать создание БД
         Потом снова закомментировать
          */
-//        databaseProvider.createDatabase();
+        databaseProvider.createDatabase();
         databaseProvider.printDepartmentSortingByName();
         databaseProvider.printDepartmentSortedByName("COMEDY");
         databaseProvider.printDepartmentSortedBySalary("ADVENTURe");

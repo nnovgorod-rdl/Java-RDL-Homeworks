@@ -10,9 +10,8 @@ import java.io.File;
 
 public class SimpleJDBCTest {
     static DatabaseProvider databaseProvider = new DatabaseProvider();
-    static File DBFile = new File("./h2_db.mv.db");
-    static File TraceFile = new File("./h2_db.trace.db");
-
+    static File DBFile = new File("E:\\Git\\Java-RDL-Homeworks\\h2_db.mv.db");
+    static File TraceFile = new File("E:\\Git\\Java-RDL-Homeworks\\h2_db.trace.db");
 
     @BeforeAll
     static void createDB() {
@@ -28,6 +27,9 @@ public class SimpleJDBCTest {
     static void deleteDBFiles() {
         if (DBFile.exists()) {
             DBFile.delete();
+        }
+        if (TraceFile.exists()) {
+            TraceFile.delete();
         }
     }
 }

@@ -103,12 +103,18 @@ public class H2DB {
 
         preparedStatement = null;
 
+//        String query = "SELECT EMPLOYEE.EMP_NAME, " +
+//                "EMPLOYEE.EMP_SALARY, " +
+//                "DEPARTMENT.DEP_NAME  " +
+//                "FROM EMPLOYEE, DEPARTMENT " +
+//                "WHERE EMPLOYEE.DEP_ID=DEPARTMENT.DEP_ID " +
+//                "AND EMPLOYEE.EMP_SALARY > ?";
         String query = "SELECT EMPLOYEE.EMP_NAME, " +
                 "EMPLOYEE.EMP_SALARY, " +
                 "DEPARTMENT.DEP_NAME  " +
-                "FROM EMPLOYEE, DEPARTMENT " +
-                "WHERE EMPLOYEE.DEP_ID=DEPARTMENT.DEP_ID " +
-                "AND EMPLOYEE.EMP_SALARY > ?";
+                "FROM EMPLOYEE " +
+                "JOIN DEPARTMENT ON EMPLOYEE.DEP_ID=DEPARTMENT.DEP_ID " +
+        "WHERE  EMPLOYEE.EMP_SALARY > ?";
         preparedStatement = db.connection.prepareStatement(query);
         preparedStatement.setDouble(1, salary);
         res = preparedStatement.executeQuery();
