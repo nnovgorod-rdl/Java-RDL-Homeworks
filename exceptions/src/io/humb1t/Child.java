@@ -4,11 +4,11 @@ import java.nio.file.AccessDeniedException;
 
 public class Child extends Parent {
 
-    public Child() throws Main.LifeCycleActionExecutionException, AccessDeniedException {
+    public Child() throws Main.LifeCycleActionExecutionException {
     }
 
     @Override
-    public void throwOnlyOneException() throws Main.LifeCycleActionExecutionException, AccessDeniedException {
+    public void throwOnlyOneException() throws Main.LifeCycleActionExecutionException {
         super.throwOnlyOneException();
     }
 }
