@@ -23,8 +23,8 @@ public class Main {
              Statement statement = connection.createStatement();) {
             CreateTable startTables = new CreateTable(statement);
             //в классе CreateTable создаются таблицы и заполняются значениями
-            //startTables.createTable();
-            //startTables.insertData();
+            startTables.createTable();
+            startTables.insertData();
 
             //для каждой таски написан свой метод
             Tasks tasks = new Tasks(statement, connection);
